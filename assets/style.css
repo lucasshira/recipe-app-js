@@ -23,6 +23,8 @@ img {
 
 .container {
     background-color: #fff;
+    box-shadow: 0 0 10px 2px #3333331A;
+    border-radius: 3px;
     width: 400px;
 }
 
@@ -41,5 +43,91 @@ header input {
 }
 
 header button {
-    background-color: none;
+    background-color: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 1.5rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.fav-container {
+    background-color: rgba(254, 202, 255, 0.53);
+    padding: 1rem;
+    text-align: center;
+}
+
+.fav-meals {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fav-meals li {
+    margin: 5px;
+    width: 75px;
+}
+
+.fav-meals img {
+    border: 3px solid #fff;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px #3333331A;
+    object-fit: cover;
+    width: 70px;
+    height: 70px;
+}
+
+.fav-meals li span {
+    font-size: 0.9rem;
+}
+
+.meal {
+    border-radius: 3px;
+    margin: 1.5rem;
+    box-shadow: 0 0 10px 2px #3333331A;
+    overflow: hidden;
+}
+
+.meal-header {
+    position: relative;
+}
+
+.meal-header .random {
+    position: absolute;
+    top: 1rem;
+    background-color: #FFF;
+    padding: 0.25rem 1rem;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.meal-header img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.meal-body {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.meal-body h4 {
+    margin: 0;
+}
+
+.meal-body button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.meal-body button:hover {
+    color: red;
 }
