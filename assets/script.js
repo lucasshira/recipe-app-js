@@ -35,5 +35,35 @@ function addMeal(mealData, random = false) {
         </div>
     `;
 
+    const btn = meal.querySelector(".meal-body .fav-btn");
+    
+    btn.addEventListener('click', function() {
+        if (btn.classList.contains("active")) {
+            removeMealsLocalStorage(mealData.idMeal);
+            btn.classList.remove("active");
+        } else {
+            addMealsLocalStorage(mealData.idMeal);
+            btn.classList.add("active");
+        }
+    });
+    
     meals.appendChild(meal);
+}
+
+function addMealsLocalStorage(mealId) {
+    const mealIds = getMealsLocalStorage();
+
+    localStorage.setItem('mealIds', JSON.stringify([...mealIds, mealId]));
+}
+
+function removeMealsLocalStorage(mealId) {
+    const mealIds = getMealsLocalStorage();
+
+    localStorage.setItem('mealIds', JSON.stringify(mealIds.filter(id => id !== mealId)));
+}
+
+function getMealsLocalStorage(){
+    const mealIds = JSON.parse(localStorage.getItem('mealIds'));
+
+    return mealIds === null ? [] : mealIds;
 }

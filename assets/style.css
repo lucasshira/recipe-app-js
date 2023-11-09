@@ -134,7 +134,7 @@ h3 {
     color: #aaa;
 }
 
-.meal-body .fav-btn:hover {
+.meal-body .fav-btn.active {
     color: red;
 }
 
