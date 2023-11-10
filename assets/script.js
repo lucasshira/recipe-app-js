@@ -1,6 +1,8 @@
 const meals = document.getElementById('meals');
+const favoriteContainer = document.getElementById('fav-meals');
 
 getRandomMeal();
+fetchFavMeals();
 
 async function getRandomMeal() {
     const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
@@ -12,11 +14,17 @@ async function getRandomMeal() {
 };
 
 async function getMealById(id) {
-    const meal = await fetch('www.themealdb.com/api/json/v1/1/lookup.php?i=52772' + id);
+    const resp = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + id);
+
+    const respData = await resp.json();
+
+    const meal = respData.meals[0];
+
+    return meal;
 };
 
 async function getMealsBySearch(term) {
-    const meals = await fetch('www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata' + term);
+    const meals = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + term);
 };
 
 function addMeal(mealData, random = false) {
@@ -45,6 +53,8 @@ function addMeal(mealData, random = false) {
             addMealsLocalStorage(mealData.idMeal);
             btn.classList.add("active");
         }
+
+        fetchFavMeals();
     });
     
     meals.appendChild(meal);
@@ -66,4 +76,40 @@ function getMealsLocalStorage(){
     const mealIds = JSON.parse(localStorage.getItem('mealIds'));
 
     return mealIds === null ? [] : mealIds;
+}
+
+async function fetchFavMeals(){
+    // clean the container
+    favoriteContainer.innerHTML = "";
+
+    const mealIds = getMealsLocalStorage();
+
+    for (let i = 0; i < mealIds.length; i++) {
+        const mealId = mealIds[i];
+        let meal = await getMealById(mealId);
+
+        addMealFav(meal);
+    }
+}
+
+function addMealFav(mealData){
+    const favMeal = document.createElement("li");
+    favMeal.setAttribute('title', mealData.strMeal);
+
+    favMeal.innerHTML = `
+        <img 
+            src="${mealData.strMealThumb}" 
+            alt="${mealData.strMeal}">
+        <span>${mealData.strMeal}</span>
+        <button class="clear"><i class="fa-solid fa-rectangle-xmark" style="color: #000000;"></i></button>`;
+
+        const btn = favMeal.querySelector('.clear');
+
+        btn.addEventListener('click', function() {
+            removeMealsLocalStorage(mealData.idMeal);
+
+            fetchFavMeals();
+        });
+    
+    favoriteContainer.appendChild(favMeal);
 }
