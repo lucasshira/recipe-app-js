@@ -158,3 +158,38 @@ h3 {
 .meal-body .fav-btn.active {
     color: red;
 }
+
+.meal-info-container {
+    background-color: rgb(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.meal-info {
+    background-color: #fff;
+    max-width: 500px;
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0 2rem;
+}
+
+.meal-info h1 {
+    text-align: center;
+}
+
+.meal-info .close-popup {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    top: 1rem;
+    right: 1rem;
+}

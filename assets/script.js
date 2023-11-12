@@ -2,6 +2,8 @@ const mealsEl = document.getElementById('meals');
 const favoriteContainer = document.getElementById('fav-meals');
 const searchTerm = document.getElementById('search-term');
 const searchBtn = document.getElementById('search');
+const mealPopup = document.getElementById('meal-popup');
+const popupCloseBtn = document.getElementById('close-popup');
 
 getRandomMeal();
 fetchFavMeals();
@@ -11,6 +13,8 @@ async function getRandomMeal() {
 
     const respData = await response.json();
     const randomMeal = respData.meals[0];
+
+    console.log(randomMeal);
 
     addMeal(randomMeal, true);
 };
