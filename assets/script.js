@@ -2,6 +2,7 @@ const mealsEl = document.getElementById('meals');
 const favoriteContainer = document.getElementById('fav-meals');
 const searchTerm = document.getElementById('search-term');
 const searchBtn = document.getElementById('search');
+const mealInfoEl = document.getElementById('meal-info');
 const mealPopup = document.getElementById('meal-popup');
 const popupCloseBtn = document.getElementById('close-popup');
 
@@ -45,7 +46,7 @@ function addMeal(mealData, random = false) {
     meal.innerHTML = `
         <div class="meal-header">
         ${random ? `<span class="random">Random Recipe</span>` : ''}
-            <img src="${mealData.strMealThumb}" alt="${mealData.Meal}">
+            <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
         </div>
         <div class="meal-body">
             <h4>${mealData.strMeal}</h4>
@@ -66,6 +67,10 @@ function addMeal(mealData, random = false) {
         }
 
         fetchFavMeals();
+    });
+
+    meal.addEventListener('click', function() {
+        showMealInfo(mealData);
     });
     
     mealsEl.appendChild(meal);
@@ -136,4 +141,25 @@ searchBtn.addEventListener('click', async function() {
             addMeal(meal);
         });
     }
+});
+
+function showMealInfo(mealData) {
+
+    mealInfoEl.innerHTML = '';
+
+    const mealEl = document.createElement('div');
+
+    mealEl.innerHTML = `
+        <h1>${mealData.strMeal}</h1>
+        <img src="${mealData.strMealThumb}" alt=""/>
+        <p>${mealData.strInstructions}</p>
+    `
+
+    mealInfoEl.appendChild(mealEl);
+
+    mealPopup.classList.remove('hidden');
+}
+
+popupCloseBtn.addEventListener('click', function() {
+    mealPopup.classList.add("hidden");
 });

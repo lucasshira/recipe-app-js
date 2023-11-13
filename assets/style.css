@@ -113,6 +113,7 @@ h3 {
 .meal {
     border-radius: 3px;
     margin: 1.5rem;
+    cursor: pointer;
     box-shadow: 0 0 10px 2px #3333331A;
     overflow: hidden;
 }
@@ -159,7 +160,7 @@ h3 {
     color: red;
 }
 
-.meal-info-container {
+.popup-container {
     background-color: rgb(0, 0, 0, 0.5);
     position: fixed;
     display: flex;
@@ -171,20 +172,23 @@ h3 {
     bottom: 0;
 }
 
-.meal-info {
+.popup-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.popup {
     background-color: #fff;
-    max-width: 500px;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow: auto;
     position: relative;
     width: 100%;
     border-radius: 5px;
     padding: 0 2rem;
 }
 
-.meal-info h1 {
-    text-align: center;
-}
-
-.meal-info .close-popup {
+.popup .close-popup {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -192,4 +196,8 @@ h3 {
     font-size: 1.5rem;
     top: 1rem;
     right: 1rem;
+}
+
+.meal-info h1 {
+    text-align: center;
 }
