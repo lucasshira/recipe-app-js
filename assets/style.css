@@ -72,6 +72,7 @@ h3 {
 
 .fav-meals li {
     position: relative;
+    cursor: pointer;
     margin: 5px;
     width: 75px;
 }
