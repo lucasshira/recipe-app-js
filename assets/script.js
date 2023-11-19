@@ -10,33 +10,45 @@ getRandomMeal();
 fetchFavMeals();
 
 async function getRandomMeal() {
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    try {
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
 
-    const respData = await response.json();
-    const randomMeal = respData.meals[0];
-
-    console.log(randomMeal);
-
-    addMeal(randomMeal, true);
+        const respData = await response.json();
+        const randomMeal = respData.meals[0];
+    
+        console.log(randomMeal);
+    
+        addMeal(randomMeal, true);
+    } catch (e) {
+        console.log('Ocorreu um erro: ', e);
+    }
 };
 
 async function getMealById(id) {
-    const resp = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + id);
+    try {
+        const resp = await fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + id);
 
-    const respData = await resp.json();
-
-    const meal = respData.meals[0];
-
-    return meal;
+        const respData = await resp.json();
+    
+        const meal = respData.meals[0];
+    
+        return meal;
+    } catch (e) {
+        console.log('Ocorreu um erro: ', e);
+    }
 };
 
 async function getMealsBySearch(term) {
-    const resp = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + term);
+    try {
+        const resp = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + term);
 
-    const respData = await resp.json();
-    const meals = respData.meals;
-
-    return meals;
+        const respData = await resp.json();
+        const meals = respData.meals;
+    
+        return meals;
+    } catch (e) {
+        console.log('Ocorreu um erro: ', e);
+    }
 };
 
 function addMeal(mealData, random = false) {
@@ -98,15 +110,20 @@ function getMealsLocalStorage(){
 
 async function fetchFavMeals(){
     // clean the container
-    favoriteContainer.innerHTML = "";
+    try {
+        favoriteContainer.innerHTML = "";
 
-    const mealIds = getMealsLocalStorage();
+        const mealIds = getMealsLocalStorage();
 
-    for (let i = 0; i < mealIds.length; i++) {
-        const mealId = mealIds[i];
-        let meal = await getMealById(mealId);
+        for (let i = 0; i < mealIds.length; i++) {
+            const mealId = mealIds[i];
+            let meal = await getMealById(mealId);
 
-        addMealFav(meal);
+            addMealFav(meal);
+        }
+
+    } catch (e) {
+        console.log('Ocorreu um erro: ', e);
     }
 }
 
@@ -139,15 +156,19 @@ function addMealFav(mealData){
 }
 
 searchBtn.addEventListener('click', async function() {
-    mealsEl.innerHTML = "";
-    const search = searchTerm.value;
-
-    const meals = await getMealsBySearch(search);
-
-    if (meals) {
-        meals.forEach(meal => {
-            addMeal(meal);
-        });
+    try {
+        mealsEl.innerHTML = "";
+        const search = searchTerm.value;
+    
+        const meals = await getMealsBySearch(search);
+    
+        if (meals) {
+            meals.forEach(meal => {
+                addMeal(meal);
+            });
+        }
+    } catch (e) {
+        console.log('Ocorreu um erro: ', e);
     }
 });
 
