@@ -20,7 +20,7 @@ async function getRandomMeal() {
     
         addMeal(randomMeal, true);
     } catch (e) {
-        console.log('Ocorreu um erro: ', e);
+        console.log(e);
     }
 };
 
@@ -34,7 +34,7 @@ async function getMealById(id) {
     
         return meal;
     } catch (e) {
-        console.log('Ocorreu um erro: ', e);
+        console.log(e);
     }
 };
 
@@ -47,7 +47,7 @@ async function getMealsBySearch(term) {
     
         return meals;
     } catch (e) {
-        console.log('Ocorreu um erro: ', e);
+        console.log(e);
     }
 };
 
@@ -123,7 +123,7 @@ async function fetchFavMeals(){
         }
 
     } catch (e) {
-        console.log('Ocorreu um erro: ', e);
+        console.log(e);
     }
 }
 
@@ -168,7 +168,7 @@ searchBtn.addEventListener('click', async function() {
             });
         }
     } catch (e) {
-        console.log('Ocorreu um erro: ', e);
+        console.log(e);
     }
 });
 
