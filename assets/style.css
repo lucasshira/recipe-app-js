@@ -53,7 +53,7 @@ header button {
 }
 
 .fav-container {
-    background-color: rgba(254, 202, 255, 0.53);
+    background-color: rgba(254, 202, 255, 0.69);
     padding: 0.5rem 0.5rem;
     text-align: center;
 }
@@ -159,6 +159,11 @@ h3 {
 
 .meal-body .fav-btn.active {
     color: red;
+    transition: transform 0.3s;
+}
+
+.meal-body .fav-btn.active:hover {
+    transform: scale(1.2);
 }
 
 .popup-container {
