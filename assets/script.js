@@ -179,7 +179,6 @@ function showMealInfo(mealData) {
     const mealEl = document.createElement('div');
     const ingredients = [];
 
-    // get ingredients and measures
     for(let i = 1; i <= 20; i++) {
         if(mealData['strIngredient' + i]) {
             ingredients.push(`${mealData['strIngredient' + i]} - ${mealData['strMeasure' + i]}`);
